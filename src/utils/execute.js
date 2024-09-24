@@ -14,7 +14,7 @@ export const execute = async (command, code, extension) => {
   await writeFile(tmpFile, code, "utf8");
   try {
     // Execute the JavaScript code using node
-    console.log(`${command} ${tmpFile}`);
+    console.log(`${command} ${tmpFile}\r`);
     const { error, stdout, stderr } = await execPromise(
       `${command} ${tmpFile}`,
     );
@@ -27,7 +27,7 @@ export const execute = async (command, code, extension) => {
   } catch (err) {
     // Handle any other execution errors (e.g., syntax errors in the code)
     console.log({ command });
-    console.error("Execution error\r\n");
+    console.error("Execution error\r");
     let stderr = err.stderr;
     if (stderr) {
       stderr = err.stderr.split("\n");
