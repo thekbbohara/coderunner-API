@@ -13,6 +13,6 @@ app.get("/", (_, res) => {
 app.use("/", healthRouter);
 app.use("/api/v1/exec", jsRouter, pyRouter);
 
-app.listen(PORT, HOST, () => {
-  console.log(`Listening on host:${HOST} port:${PORT}`);
+app.listen(PORT||4000, HOST||"localhost", () => {
+  console.log(`Listening on host:${HOST||"localhost"} port:${PORT||4000}`);
 });
