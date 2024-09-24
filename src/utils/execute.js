@@ -14,16 +14,18 @@ export const execute = async (command, code, extension) => {
   await writeFile(tmpFile, code, "utf8");
   try {
     // Execute the JavaScript code using node
-    const { stdout, stderr } = await execPromise(`${command} ${tmpFile}`);
+    const { error, stdout, stderr } = await execPromise(
+      `${command} ${tmpFile}`,
+    );
     // Respond with the output or error
-    if (stderr) {
+    if (stderr || error) {
       // return res.status(500).send(`Error: ${stderr}`);
-      return { status: 500, output: `Error: ${stderr}` };
+      return { status: 500, output: `Error: ${stderr || error}` };
     }
     return { status: 200, output: stdout };
-  } catch (error) {
+  } catch (err) {
     // Handle any other execution errors (e.g., syntax errors in the code)
-    console.error("Execution error:", error);
-    res.status(500).send("Error executing code.");
+    console.error("Execution error:", err);
+    return { status: 500, output: "Error executing code." };
   }
 };
