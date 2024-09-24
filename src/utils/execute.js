@@ -14,6 +14,7 @@ export const execute = async (command, code, extension) => {
   await writeFile(tmpFile, code, "utf8");
   try {
     // Execute the JavaScript code using node
+    console.log(`${command} ${tmpFile}`);
     const { error, stdout, stderr } = await execPromise(
       `${command} ${tmpFile}`,
     );
