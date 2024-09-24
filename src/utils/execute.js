@@ -25,7 +25,14 @@ export const execute = async (command, code, extension) => {
     return { status: 200, output: stdout };
   } catch (err) {
     // Handle any other execution errors (e.g., syntax errors in the code)
-    console.error("Execution error:", err);
-    return { status: 500, output: "Error executing code." };
+    console.log({ command });
+    console.error("Execution error\r\n");
+    let stderr = err.stderr;
+    if (stderr) {
+      stderr = err.stderr.split("\n");
+      stderr[0] = "";
+      stderr = stderr.join("\n");
+    }
+    return { status: 500, output: stderr || "Unable to execute code." };
   }
 };
