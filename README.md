@@ -8,18 +8,18 @@ The Coderunner API is a backend service designed to execute code snippets in var
 
 ### Setup Instructions
 
-### 0. Clone the Repository
+### 1. Clone the Repository
 ```
 git clone https://github.com/thekbbohara/coderunner-API.git
 cd coderunner-API
 ```
-### 0. Docker Setup (recommended)
+### 2. Docker Setup (recommended)
 ```
 docker build -t coderunner-api .
 docker run -e PORT=4000 -e HOST=0.0.0.0 -p 4000:4000 coderunner-api
 ```
 ___ 
-### 2. Local setup
+### 3. Local setup
 ```
 npm i
 mkdir -p tmp/exe
