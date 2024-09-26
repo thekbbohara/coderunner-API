@@ -17,6 +17,7 @@ RUN npm install
 
 # Copy the rest of the application files
 COPY . .
+RUN mkdir -p tmp/exe
 
 # Expose port 4000 for the API
 EXPOSE 4000
