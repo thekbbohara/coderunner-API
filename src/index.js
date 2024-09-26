@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config.js";
-import { healthRouter, jsRouter, pyRouter } from "./routes/index.js";
+import { cppRouter, healthRouter, jsRouter, pyRouter } from "./routes/index.js";
 
 const { PORT, HOST } = process.env;
 const app = express();
@@ -11,8 +11,8 @@ app.get("/", (_, res) => {
   res.status(200).end("ok");
 });
 app.use("/", healthRouter);
-app.use("/api/v1/exec", jsRouter, pyRouter);
+app.use("/api/v1/exec", jsRouter, pyRouter, cppRouter);
 
-app.listen(PORT||4000, HOST||"localhost", () => {
-  console.log(`Listening on host:${HOST||"localhost"} port:${PORT||4000}`);
+app.listen(PORT || 4000, HOST || "localhost", () => {
+  console.log(`Listening on host:${HOST || "localhost"} port:${PORT || 4000}`);
 });
