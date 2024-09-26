@@ -1,5 +1,8 @@
+run project
 ```
+git clone https://github.com/thekbbohara/coderunner-API.git
 npm install
+mkdir -p tmp/exe
 npm start
 ```
 ___
